@@ -4,7 +4,7 @@ import Footer from "../Footer/Footer";
 
 function App() {
     let [nbClic, setNbClic] = useState(0);
-    let [nom, setNom] = useState("");
+    let [nom, setNom] = useState("Maxime");
 
     function onPageClic(event) {
         nbClic++;
