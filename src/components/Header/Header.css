@@ -1,0 +1,13 @@
+header {
+    background-color: cornflowerblue;
+    width: 100%;
+    border: 2px solid goldenrod;
+
+    &.connexion {
+        background-color: red;
+    }
+    
+    @media (max-width: 768px) {
+        width: 50%;
+    }
+}
