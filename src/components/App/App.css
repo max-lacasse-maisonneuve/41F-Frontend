@@ -1,0 +1,22 @@
+body {
+    font-family: var(--police-principale);
+    color: var(--couleur-noir);
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    min-height: 100vh;
+}
+
+h1 {
+    font-family: var(--police-accent);
+    color: var(--couleur-accent);
+}
+
+main {
+    flex: 1;
+    padding: var(--espace-m);
+}

@@ -1,12 +1,12 @@
 import Nav from "../Nav/Nav";
 import "./Header.css";
 
-function Header(props) {
-    const { nom } = props;
-
+function Header() {
     return (
-        <header className={nom == "" ? "" : "connexion"}>
-            Mon entête - {nom}
+        <header>
+            <div className="logo-container">
+                <img src="assets/img/logo.png" alt="logo" />
+            </div>
             <Nav />
         </header>
     );

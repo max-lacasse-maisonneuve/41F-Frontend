@@ -1,0 +1,20 @@
+:root {
+    --couleur-noir: #000000;
+    --couleur-blanc: #ffffff;
+
+    --couleur-principale__fonce: #242323;
+    --couleur-principale: #1a2335;
+    --couleur-principale__pale: #949494;
+
+    --couleur-accent__fonce: #6483b1;
+    --couleur-accent: #598cda;
+    --couleur-accent__pale: #a5bde2;
+
+    --couleur-info: #3377a7;
+    --couleur-succes: #54cc62;
+    --couleur-alerte: #ff9d00;
+    --couleur-erreur: #c53232;
+
+    --couleur-inactif: #adadad;
+    --couleur-survol: #2c577e;
+}
