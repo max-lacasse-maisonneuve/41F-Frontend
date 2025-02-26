@@ -1,19 +1,20 @@
 import "./Nav.css";
+import { NavLink } from "react-router-dom";
 function Nav() {
     return (
         <nav>
             <ul>
                 <li>
-                    <a href="#">Accueil</a>
+                    <NavLink to="/">Accueil</NavLink>
                 </li>
                 <li>
-                    <a href="films">Liste des films</a>
+                    <NavLink to="/films">Liste des films</NavLink>
                 </li>
                 <li>
-                    <a href="film-ajout">Ajouter un film</a>
+                    <NavLink to="/film-ajout">Ajouter un film</NavLink>
                 </li>
                 <li>
-                    <a href="utilisateurs">Liste des utilisateurs</a>
+                    <NavLink to="/utilisateurs">Liste des utilisateurs</NavLink>
                 </li>
             </ul>
             <ul>

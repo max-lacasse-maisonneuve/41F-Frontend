@@ -11,6 +11,10 @@ nav {
             & a {
                 text-decoration: none;
                 color: var(--couleur-accent);
+                &.active {
+                    color: var(--couleur-accent-pale);
+                    text-decoration: underline;
+                }
             }
         }
     }
