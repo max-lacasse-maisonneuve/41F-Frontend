@@ -8,6 +8,7 @@ import Footer from "../Footer/Footer";
 //Pages du site
 import HeroAccueil from "../HeroAccueil/HeroAccueil";
 import ListeFilms from "../ListeFilms/ListeFilms";
+import DetailFilm from "../DetailFilm/DetailFilm";
 
 function App() {
     return (
@@ -15,7 +16,10 @@ function App() {
             <Header />
             <Routes>
                 <Route path="/" element={<HeroAccueil />} />
-                <Route path="/films" element={<ListeFilms />} />
+                <Route path="films">
+                    <Route path="" element={<ListeFilms />} />
+                    <Route path=":id" element={<DetailFilm />} />
+                </Route>
             </Routes>
             <Footer />
         </>
