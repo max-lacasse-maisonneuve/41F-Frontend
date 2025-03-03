@@ -1,0 +1,39 @@
+.liste-films__element {
+    flex-basis: calc((100% / 3) - (0.5rem * 2 / 3));
+    border: 2px solid var(--couleur-principale);
+    position: relative;
+    overflow: hidden;
+    transition: all 350ms;
+    cursor: pointer;
+    border: 2px solid transparent;
+
+    & img {
+        max-width: 100%;
+        max-height: 100%;
+    }
+
+    & .tuile-infos {
+        display: flex;
+        position: absolute;
+        bottom: -100%;
+        left: 0;
+        right: 0;
+        padding: var(--espace-m);
+        background-color: color-mix(in oklab, var(--couleur-accent) 60%, rgba(255, 255, 255, 0.2) 40%);
+        backdrop-filter: blur(4px);
+        transition: all 350ms;
+        color: var(--couleur-blanc);
+        font-weight: bold;
+        font-family: var(--police-accent2);
+        font-size: var(--police-xl);
+    }
+
+    &:hover {
+        transform: scale(1.01);
+        border: 2px solid var(--couleur-accent);
+
+        & .tuile-infos {
+            bottom: 0;
+        }
+    }
+}

@@ -5,4 +5,18 @@ header {
     padding: var(--espace-m);
     background-color: var(--couleur-principale);
     color: var(--couleur-blanc);
+    gap: 5rem;
+
+    & .logo-container {
+        display: flex;
+        align-items: center;
+        font-family: var(--police-accent);
+        color: var(--couleur-accent2);
+        font-size: var(--police-xl);
+        flex-grow: 2;
+    }
+    & .logo {
+        max-width: 100%;
+        max-height: 100px;
+    }
 }

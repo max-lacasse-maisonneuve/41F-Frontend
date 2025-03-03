@@ -12,7 +12,7 @@ import DetailFilm from "../DetailFilm/DetailFilm";
 
 function App() {
     return (
-        <>
+        <div className="max-h-screen">
             <Header />
             <Routes>
                 <Route path="/" element={<HeroAccueil />} />
@@ -22,7 +22,7 @@ function App() {
                 </Route>
             </Routes>
             <Footer />
-        </>
+        </div>
     );
 }
 

@@ -6,11 +6,15 @@ nav {
     & ul {
         display: flex;
         list-style: none;
+        justify-content: flex-end;
+        gap: var(--espace-xs);
+
         & li {
-            padding: var(--espace-m);
+            padding: var(--espace-xs);
             & a {
                 text-decoration: none;
                 color: var(--couleur-accent);
+                font-size: var(--police-xs);
                 &.active {
                     color: var(--couleur-accent-pale);
                     text-decoration: underline;

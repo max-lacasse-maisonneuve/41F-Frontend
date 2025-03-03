@@ -39,9 +39,10 @@ function ListeFilms() {
     return (
         <main>
             {erreur && <Toast message="Une erreur est survenue" />}
-            ListeFilms
-            <Button callback={clic} texte="Cliquez-moi" />
-            <Button callback={clic2} texte="Abonnez-vous" />
+            <h1>Catalogue</h1>
+            <p>Découvrez nos nouveaux titres</p>
+            {/* <Button callback={clic} texte="Cliquez-moi" />
+            <Button callback={clic2} texte="Abonnez-vous" /> */}
             {/* {afficherConnexion()} */}
             {/* {estConnecte && <div>est connecté</div>} */}
             {/* {estConnecte ? <div>est connecté</div> : ""} */}

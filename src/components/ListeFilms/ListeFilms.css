@@ -1,17 +1,11 @@
+h1 {
+    font-size: var(--police-l);
+    padding-bottom: var(--espace-s);
+}
+
 .liste-films {
     padding: var(--espace-s) 0;
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
-
-    & .liste-films__element {
-        flex-basis: calc((100% / 3) - (0.5rem * 2 / 3));
-        border: 2px solid var(--couleur-principale);
-        padding: var(--espace-m);
-        
-        & img {
-            max-width: 100%;
-            max-height: 100%;
-        }
-    }
 }

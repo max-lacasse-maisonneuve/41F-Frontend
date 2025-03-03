@@ -1,6 +1,5 @@
 import { useParams, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { detail } from "./Detail.module.css";
 
 function DetailFilm() {
     const { id } = useParams();
@@ -29,13 +28,20 @@ function DetailFilm() {
     }, []);
 
     return (
-        <main>
-            <div className="w-1/2 p-5 flex flex-col bg-indigo-950 sm:bg-indigo-100">
-                <h1 className="text-white">{film.titre}</h1>
-                <h2>{film.annee}</h2>
+        <main className="flex justify-center gap-16 ">
+            <div className="w-1/4">
+                <img className="h-auto max-w-full" src={`/img/${film.titreVignette}`} alt={film.titre} />
             </div>
-
-            <Link to="/films">Retour aux films</Link>
+            <div className="flex flex-col justify-end w-3/4">
+                <div className="pb-5">
+                    <div className="text-amber-500 text-3xl font-bold">{film.titre}</div>
+                    <h2 className="text-amber-800 ">{film.annee}</h2>
+                    <p>{film.description}</p>
+                </div>
+                <Link className="text-neutral-500 hover:underline" to="/films">
+                    Retour aux films
+                </Link>
+            </div>
         </main>
     );
 }
