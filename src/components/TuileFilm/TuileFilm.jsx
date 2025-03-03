@@ -9,6 +9,7 @@ function TuileFilm(props) {
         const declencheur = event.currentTarget;
         navigate(`/films/${declencheur.id}`);
     }
+
     return (
         <div className="liste-films__element" key={`film-${film.id}`} onClick={clickVignette} id={film.id}>
             {film.titre}
