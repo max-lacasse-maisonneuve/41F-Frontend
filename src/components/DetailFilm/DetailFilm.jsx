@@ -1,7 +1,5 @@
-import React from "react";
-
 function DetailFilm() {
-    return <div>DetailFilm</div>;
+    return <main></main>;
 }
 
 export default DetailFilm;

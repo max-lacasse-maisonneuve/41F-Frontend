@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 function TuileFilm(props) {
     const { film } = props;
     let navigate = useNavigate();
-    
+
     function clickVignette(event) {
         const declencheur = event.currentTarget;
         navigate(`/films/${declencheur.id}`);

@@ -5,17 +5,22 @@ import TuileFilm from "../TuileFilm/TuileFilm";
 function ListeFilms() {
     let [estConnecte, setConnexion] = useState(false);
     let [films, setFilms] = useState([]);
-   
 
     useEffect(() => {
         async function fetchData() {
-            const reponse = await fetch("https://four1f-620-backend.onrender.com/films");
+            let URL = import.meta.env.VITE_DEV_URL;
+
+            if (import.meta.env.VITE_MODE == "PRODUCTION") {
+                URL = import.meta.env.VITE_PROD_URL;
+            }
+
+            const reponse = await fetch(`${URL}/films`);
+            
             const donneesFilms = await reponse.json();
             setFilms(donneesFilms);
         }
         fetchData();
     }, []);
-
 
     return (
         <main>
