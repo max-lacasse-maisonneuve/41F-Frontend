@@ -12,15 +12,17 @@ import DetailFilm from "../DetailFilm/DetailFilm";
 
 function App() {
     return (
-        <div className="max-h-screen">
+        <div className="min-h-screen flex flex-col">
             <Header />
-            <Routes>
-                <Route path="/" element={<HeroAccueil />} />
-                <Route path="films">
-                    <Route path="" element={<ListeFilms />} />
-                    <Route path=":id" element={<DetailFilm />} />
-                </Route>
-            </Routes>
+            <main className="grow-2">
+                <Routes>
+                    <Route path="/" element={<HeroAccueil />} />
+                    <Route path="films">
+                        <Route path="" element={<ListeFilms />} />
+                        <Route path=":id" element={<DetailFilm />} />
+                    </Route>
+                </Routes>
+            </main>
             <Footer />
         </div>
     );

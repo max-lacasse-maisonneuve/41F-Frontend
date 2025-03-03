@@ -7,5 +7,5 @@ h1 {
     padding: var(--espace-s) 0;
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem;
+    gap: 1rem;
 }

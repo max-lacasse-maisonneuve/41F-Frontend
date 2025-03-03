@@ -1,5 +1,5 @@
 .liste-films__element {
-    flex-basis: calc((100% / 3) - (0.5rem * 2 / 3));
+    flex-basis: calc((100% / 5) - (1rem * 4 / 5));
     border: 2px solid var(--couleur-principale);
     position: relative;
     overflow: hidden;
