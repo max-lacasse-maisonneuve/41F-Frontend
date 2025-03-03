@@ -2,29 +2,46 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./ListeFilms.css";
 import TuileFilm from "../TuileFilm/TuileFilm";
+import Toast from "../Toast/Toast";
+import Button from "../Button/Button";
+
 function ListeFilms() {
     let [estConnecte, setConnexion] = useState(false);
     let [films, setFilms] = useState([]);
+    let [erreur, setErreur] = useState(false);
 
     useEffect(() => {
         async function fetchData() {
-            let URL = import.meta.env.VITE_DEV_URL;
+            try {
+                let URL = import.meta.env.VITE_DEV_URL;
 
-            if (import.meta.env.VITE_MODE == "PRODUCTION") {
-                URL = import.meta.env.VITE_PROD_URL;
+                if (import.meta.env.VITE_MODE == "PRODUCTION") {
+                    URL = import.meta.env.VITE_PROD_URL;
+                }
+
+                const reponse = await fetch(`${URL}/films`);
+
+                const donneesFilms = await reponse.json();
+                setFilms(donneesFilms);
+            } catch (erreur) {
+                setErreur(true);
             }
-
-            const reponse = await fetch(`${URL}/films`);
-            
-            const donneesFilms = await reponse.json();
-            setFilms(donneesFilms);
         }
         fetchData();
     }, []);
 
+    function clic() {
+        console.log("patate");
+    }
+    function clic2() {
+        console.log("patate2");
+    }
     return (
         <main>
+            {erreur && <Toast message="Une erreur est survenue" />}
             ListeFilms
+            <Button callback={clic} texte="Cliquez-moi" />
+            <Button callback={clic2} texte="Abonnez-vous" />
             {/* {afficherConnexion()} */}
             {/* {estConnecte && <div>est connecté</div>} */}
             {/* {estConnecte ? <div>est connecté</div> : ""} */}

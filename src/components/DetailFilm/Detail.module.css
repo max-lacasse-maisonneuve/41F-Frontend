@@ -1,0 +1,9 @@
+.detail {
+    & h1 {
+        color: tomato;
+    }
+}
+
+.patate {
+    color: cornflowerblue;
+}
