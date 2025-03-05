@@ -56,7 +56,7 @@ function FormModifierFilm() {
         valeur = valeur[0].toUpperCase() + valeur.slice(1);
 
         const nouvellesValeur = { ...donneesFilm, [nom]: valeur };
-        // nouvellesValeur[nom] = valeur;
+
         setDonneesFilm(nouvellesValeur);
     }
 
@@ -98,9 +98,7 @@ function FormModifierFilm() {
                 body: JSON.stringify(donneesFilm),
             };
 
-            //On envoie
             const reponse = await fetch(`${URL}/films/${id}`, objDonnees);
-            //On gère la réponse
 
             if (reponse.ok) {
                 navigate(`/films/${id}`);

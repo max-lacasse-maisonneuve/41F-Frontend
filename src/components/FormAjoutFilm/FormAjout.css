@@ -15,5 +15,11 @@ form {
         padding: 0.25rem;
         border-radius: 10px;
         cursor: pointer;
+        &:disabled {
+            background-color: color-mix(in oklab, var(--couleur-inactif) 80%, black 20%);
+            color: var(--couleur-inactif);
+            pointer-events: none;
+            border: none;
+        }
     }
 }
