@@ -11,7 +11,7 @@ function Nav() {
                     <NavLink to="/films">Liste des films</NavLink>
                 </li>
                 <li>
-                    <NavLink to="/film-ajout">Ajouter un film</NavLink>
+                    <NavLink to="/films/ajout">Ajouter un film</NavLink>
                 </li>
                 <li>
                     <NavLink to="/utilisateurs">Liste des utilisateurs</NavLink>

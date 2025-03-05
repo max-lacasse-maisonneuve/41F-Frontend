@@ -9,6 +9,7 @@ import Footer from "../Footer/Footer";
 import HeroAccueil from "../HeroAccueil/HeroAccueil";
 import ListeFilms from "../ListeFilms/ListeFilms";
 import DetailFilm from "../DetailFilm/DetailFilm";
+import FormAjoutFilm from "../FormAjoutFilm/FormAjoutFilm";
 
 function App() {
     return (
@@ -19,6 +20,7 @@ function App() {
                     <Route path="/" element={<HeroAccueil />} />
                     <Route path="films">
                         <Route path="" element={<ListeFilms />} />
+                        <Route path="ajout" element={<FormAjoutFilm />} />
                         <Route path=":id" element={<DetailFilm />} />
                     </Route>
                 </Routes>

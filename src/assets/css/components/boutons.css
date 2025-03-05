@@ -1,5 +1,18 @@
 .bouton {
-    padding: var(--espace-m);
+    padding: var(--espace-s);
     border-radius: 0.25rem;
     background-color: var(--couleur-principale);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 350ms;
+
+    &.erreur {
+        background-color: var(--couleur-erreur);
+        color: var(--couleur-blanc);
+        &:hover {
+            background-color: color-mix(in oklab, var(--couleur-erreur) 80%, white 20%);
+        }
+    }
 }

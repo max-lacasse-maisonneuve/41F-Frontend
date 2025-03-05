@@ -1,12 +1,15 @@
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 function DetailFilm() {
     const { id } = useParams();
+    const navigate = useNavigate();
+
     // Use state pour stocker les infos du film
     let [film, setFilm] = useState({
         titre: "",
         annee: "",
+        genres: [],
     });
 
     // Use effect pour déclencher une fonction lors du chargement du composant DetailFilm
@@ -27,6 +30,22 @@ function DetailFilm() {
         getData();
     }, []);
 
+    async function supprimerFilm() {
+        let URL = import.meta.env.VITE_DEV_URL;
+
+        if (import.meta.env.VITE_MODE == "PRODUCTION") {
+            URL = import.meta.env.VITE_PROD_URL;
+        }
+
+        const objDonnees = {
+            method: "DELETE",
+        };
+
+        const reponse = await fetch(`${URL}/films/${id}`, objDonnees);
+        if (reponse.ok) {
+            navigate("/films");
+        }
+    }
     return (
         <main className="flex justify-center gap-16 ">
             <div className="w-1/4">
@@ -37,7 +56,13 @@ function DetailFilm() {
                     <div className="text-amber-500 text-3xl font-bold">{film.titre}</div>
                     <h2 className="text-amber-800 ">{film.annee}</h2>
                     <p>{film.description}</p>
+                    <p>{film.genres.join("-")}</p>
                 </div>
+
+                <div className="bouton erreur w-1/4 p-2 mb-5" onClick={supprimerFilm}>
+                    Supprimer
+                </div>
+
                 <Link className="text-neutral-500 hover:underline" to="/films">
                     Retour aux films
                 </Link>

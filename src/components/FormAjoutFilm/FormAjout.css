@@ -1,0 +1,19 @@
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    & .input-group {
+        display: flex;
+        gap: 0.5rem;
+    }
+    input,
+    textarea,
+    select {
+        border: 2px solid var(--couleur-accent);
+    }
+    input[type="submit"] {
+        padding: 0.25rem;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+}
