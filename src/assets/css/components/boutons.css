@@ -1,12 +1,15 @@
 .bouton {
     padding: var(--espace-s);
     border-radius: 0.25rem;
-    background-color: var(--couleur-principale);
+    background-color: var(--couleur-accent);
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
     transition: all 350ms;
+    &:hover {
+        background-color: color-mix(in oklab, var(--couleur-accent) 80%, white 20%);
+    }
 
     &.erreur {
         background-color: var(--couleur-erreur);

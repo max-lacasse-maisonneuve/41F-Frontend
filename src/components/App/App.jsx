@@ -10,7 +10,7 @@ import HeroAccueil from "../HeroAccueil/HeroAccueil";
 import ListeFilms from "../ListeFilms/ListeFilms";
 import DetailFilm from "../DetailFilm/DetailFilm";
 import FormAjoutFilm from "../FormAjoutFilm/FormAjoutFilm";
-
+import FormModifierFilm from "../FormModifierFilm/FormModifierFilm";
 function App() {
     return (
         <div className="min-h-screen flex flex-col">
@@ -21,6 +21,7 @@ function App() {
                     <Route path="films">
                         <Route path="" element={<ListeFilms />} />
                         <Route path="ajout" element={<FormAjoutFilm />} />
+                        <Route path="modifier/:id" element={<FormModifierFilm />} />
                         <Route path=":id" element={<DetailFilm />} />
                     </Route>
                 </Routes>

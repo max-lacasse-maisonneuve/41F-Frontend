@@ -46,6 +46,7 @@ function DetailFilm() {
             navigate("/films");
         }
     }
+
     return (
         <main className="flex justify-center gap-16 ">
             <div className="w-1/4">
@@ -56,15 +57,18 @@ function DetailFilm() {
                     <div className="text-amber-500 text-3xl font-bold">{film.titre}</div>
                     <h2 className="text-amber-800 ">{film.annee}</h2>
                     <p>{film.description}</p>
-                    <p>{film.genres.join("-")}</p>
+                    <p>{film.genres && film.genres.join("-")}</p>
                 </div>
+
+                <Link className="bouton w-1/4 p-2 mb-5 text-white" to={`/films/modifier/${film.id}`}>
+                    Modifier
+                </Link>
 
                 <div className="bouton erreur w-1/4 p-2 mb-5" onClick={supprimerFilm}>
                     Supprimer
                 </div>
-
                 <Link className="text-neutral-500 hover:underline" to="/films">
-                    Retour aux films
+                    <i className="fas fa-arrow-left mr-2"></i> Retour à la liste
                 </Link>
             </div>
         </main>
