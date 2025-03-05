@@ -47,7 +47,6 @@ function FormAjoutFilm() {
 
         //On nettoie
         valeur = trim(valeur);
-        valeur = escape(valeur);
 
         // On crée un nouvel objet avec les nouvelles valeurs et on met à jour l'état
         const nouvellesValeur = { ...donneesFilm, [nom]: valeur };
@@ -84,7 +83,7 @@ function FormAjoutFilm() {
         // Titre
         if (isEmpty(donneesFilm.titre)) {
             nouvellesErreurs.titre = "Le titre ne peut pas être vide";
-        } else if (!isLength(donneesFilm.titre, { max: 5 })) {
+        } else if (!isLength(donneesFilm.titre, { max: 100 })) {
             nouvellesErreurs.titre = "Le titre est trop long";
         }
 

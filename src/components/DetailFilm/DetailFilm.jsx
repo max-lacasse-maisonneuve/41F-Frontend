@@ -1,5 +1,6 @@
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { d } from "../../../utils/fonctions";
 
 function DetailFilm() {
     const { id } = useParams();
@@ -50,13 +51,13 @@ function DetailFilm() {
     return (
         <main className="flex justify-center gap-16 ">
             <div className="w-1/4">
-                <img className="h-auto max-w-full" src={`/img/${film.titreVignette}`} alt={film.titre} />
+                <img className="h-auto max-w-full" src={`/img/${d(film.titreVignette)}`} alt={d(film.titre)} />
             </div>
             <div className="flex flex-col justify-end w-3/4">
                 <div className="pb-5">
-                    <div className="text-amber-500 text-3xl font-bold">{film.titre}</div>
+                    <div className="text-amber-500 text-3xl font-bold">{d(film.titre)}</div>
                     <h2 className="text-amber-800 ">{film.annee}</h2>
-                    <p>{film.description}</p>
+                    <p>{d(film.description)}</p>
                     <p>{film.genres && film.genres.join("-")}</p>
                 </div>
 
