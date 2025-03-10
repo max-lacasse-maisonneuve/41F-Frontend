@@ -1,22 +1,34 @@
 import Nav from "../Nav/Nav";
 import "./Header.css";
 import { Link } from "react-router-dom";
-import { motion, useScroll, AnimatePresence } from "motion/react";
+import { motion, useScroll, AnimatePresence, useMotionValueEvent } from "motion/react";
 import { useEffect, useState } from "react";
 
 function Header() {
     const { scrollYProgress } = useScroll();
     const [headerVisible, setVisible] = useState(true);
 
-    useEffect(() => {
-        scrollYProgress.on("change", (value) => {
-            if (value > 0.2) {
-                setVisible(false);
-            } else {
-                setVisible(true);
-            }
-        });
-    }, [scrollYProgress]);
+    // useEffect(() => {
+    //     scrollYProgress.on("change", (value) => {
+    //         if (value > 0.2) {
+    //             setVisible(false);
+    //         } else {
+    //             setVisible(true);
+    //         }
+    //     });
+    // }, [scrollYProgress]);
+
+    useMotionValueEvent(scrollYProgress, "change", (value) => {
+        if (document.body.scrollHeight <= window.innerHeight) {
+            return;
+        }
+
+        if (value > 0.2) {
+            setVisible(false);
+        } else {
+            setVisible(true);
+        }
+    });
 
     return (
         <>
