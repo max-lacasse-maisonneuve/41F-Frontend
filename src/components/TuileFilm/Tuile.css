@@ -3,7 +3,7 @@
     border: 2px solid var(--couleur-principale);
     position: relative;
     overflow: hidden;
-    transition: all 350ms;
+    /* transition: all 350ms; */
     cursor: pointer;
     border: 2px solid transparent;
 
@@ -21,7 +21,7 @@
         padding: var(--espace-m);
         background-color: color-mix(in oklab, var(--couleur-accent) 60%, rgba(255, 255, 255, 0.2) 40%);
         backdrop-filter: blur(4px);
-        transition: all 350ms;
+        /* transition: all 350ms; */
         color: var(--couleur-blanc);
         font-weight: bold;
         font-family: var(--police-accent2);

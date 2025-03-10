@@ -1,8 +1,7 @@
 .hero {
-    width: 50%;
-    height: 100%;
     padding: var(--espace-xl);
     border: 2px solid var(--couleur-principale__fonce);
     border-radius: 10px;
     font-size: var(--police-xl);
+    overflow: hidden;
 }

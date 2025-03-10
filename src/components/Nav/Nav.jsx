@@ -1,6 +1,15 @@
 import "./Nav.css";
 import { NavLink } from "react-router-dom";
+import { motion,  } from "motion/react";
 function Nav() {
+    // const etats={
+    //     normal:{backgroundColor:"green"},
+    //     survol:{backgroundColor:"blue"}
+    // }
+    // const etatsEnfant:{
+    //     normal:{width:0},
+    //     survol:{width:"100%"}
+    // }
     return (
         <nav>
             <ul>
@@ -13,9 +22,10 @@ function Nav() {
                 <li>
                     <NavLink to="/films/ajout">Ajouter un film</NavLink>
                 </li>
-                <li>
+                <motion.li className="lien">
                     <NavLink to="/utilisateurs">Liste des utilisateurs</NavLink>
-                </li>
+                    <motion.div className="ligne"></motion.div>
+                </motion.li>
             </ul>
             <ul>
                 <li>

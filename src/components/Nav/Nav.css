@@ -11,6 +11,8 @@ nav {
 
         & li {
             padding: var(--espace-xs);
+            position: relative;
+
             & a {
                 text-decoration: none;
                 color: var(--couleur-accent);
@@ -18,6 +20,22 @@ nav {
                 &.active {
                     color: var(--couleur-accent-pale);
                     text-decoration: underline;
+                }
+            }
+
+            & .ligne {
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                border-bottom: 2px solid hotpink;
+                height: 2px;
+                transition: all 350ms;
+                width: 0;
+            }
+
+            &:hover {
+                & .ligne {
+                    width: 100% !important;
                 }
             }
         }

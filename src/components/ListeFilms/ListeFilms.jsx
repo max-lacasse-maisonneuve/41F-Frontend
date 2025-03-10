@@ -4,6 +4,7 @@ import "./ListeFilms.css";
 import TuileFilm from "../TuileFilm/TuileFilm";
 import Toast from "../Toast/Toast";
 import Button from "../Button/Button";
+import { d } from "../../../utils/fonctions";
 
 function ListeFilms() {
     let [estConnecte, setConnexion] = useState(false);
@@ -27,15 +28,15 @@ function ListeFilms() {
                 setErreur(true);
             }
         }
-        fetchData();
+        const timeout = window.setTimeout(() => {
+            fetchData();
+        }, 100);
+
+        return () => {
+            clearTimeout(timeout);
+        };
     }, []);
 
-    function clic() {
-        console.log("patate");
-    }
-    function clic2() {
-        console.log("patate2");
-    }
     return (
         <main>
             {erreur && <Toast message="Une erreur est survenue" />}
@@ -48,9 +49,19 @@ function ListeFilms() {
             {/* {estConnecte ? <div>est connecté</div> : ""} */}
             <div className="liste-films">
                 {films.map((film) => {
-                    return <TuileFilm key={film.id} film={film} />;
+                    // return <TuileFilm key={film.id} film={film} />;
+                    return (
+                        <div className="liste-films__element" key={`film-${film.id}`} id={d(film.id)}>
+                            {/* <div className="tuile-infos">{he.decode(film.titre)}</div> */}
+                            <div className="tuile-infos">{d(film.titre)}</div>
+                            <img
+                                className="object-cover h-full"
+                                src={`/img/${d(film.titreVignette)}`}
+                                alt={d(film.titre)}
+                            />
+                        </div>
+                    );
                 })}
-
                 {films.length == 0 && "Aucun film trouvé"}
             </div>
             {estConnecte ? <div>Connecté</div> : <div>Non connecté</div>}
