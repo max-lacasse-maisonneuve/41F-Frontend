@@ -4,4 +4,6 @@
     border-radius: 10px;
     font-size: var(--police-xl);
     overflow: hidden;
+    transform-origin: left center;
+    transform: scaleX(0);
 }

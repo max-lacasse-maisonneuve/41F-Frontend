@@ -1,30 +1,38 @@
 import "./Nav.css";
 import { NavLink } from "react-router-dom";
-import { motion,  } from "motion/react";
+import { motion } from "motion/react";
 function Nav() {
-    // const etats={
-    //     normal:{backgroundColor:"green"},
-    //     survol:{backgroundColor:"blue"}
-    // }
-    // const etatsEnfant:{
-    //     normal:{width:0},
-    //     survol:{width:"100%"}
-    // }
+    const etats = {
+        normal: {},
+        survol: {},
+    };
+
+    const etatsEnfant = {
+        normal: { width: 0 },
+        survol: { width: "100%" },
+    };
+
     return (
         <nav>
             <ul>
-                <li>
+                <motion.li className="lien" initial="normal" whileHover="survol" variants={etats}>
                     <NavLink to="/">Accueil</NavLink>
-                </li>
-                <li>
+                    <motion.div className="ligne" variants={etatsEnfant}></motion.div>
+                </motion.li>
+
+                <motion.li className="lien" initial="normal" whileHover="survol" variants={etats}>
                     <NavLink to="/films">Liste des films</NavLink>
-                </li>
-                <li>
+                    <motion.div className="ligne" variants={etatsEnfant}></motion.div>
+                </motion.li>
+
+                <motion.li className="lien" initial="normal" whileHover="survol" variants={etats}>
                     <NavLink to="/films/ajout">Ajouter un film</NavLink>
-                </li>
-                <motion.li className="lien">
+                    <motion.div className="ligne" variants={etatsEnfant}></motion.div>
+                </motion.li>
+
+                <motion.li className="lien" initial="normal" whileHover="survol" variants={etats}>
                     <NavLink to="/utilisateurs">Liste des utilisateurs</NavLink>
-                    <motion.div className="ligne"></motion.div>
+                    <motion.div className="ligne" variants={etatsEnfant}></motion.div>
                 </motion.li>
             </ul>
             <ul>

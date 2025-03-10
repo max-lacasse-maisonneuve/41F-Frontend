@@ -7,7 +7,7 @@ nav {
         display: flex;
         list-style: none;
         justify-content: flex-end;
-        gap: var(--espace-xs);
+        gap: var(--espace-m);
 
         & li {
             padding: var(--espace-xs);
@@ -16,10 +16,10 @@ nav {
             & a {
                 text-decoration: none;
                 color: var(--couleur-accent);
-                font-size: var(--police-xs);
+                font-size: var(--police-m);
+
                 &.active {
-                    color: var(--couleur-accent-pale);
-                    text-decoration: underline;
+                    color: var(--couleur-accent__pale);
                 }
             }
 
@@ -27,16 +27,8 @@ nav {
                 position: absolute;
                 left: 0;
                 bottom: 0;
-                border-bottom: 2px solid hotpink;
+                border-bottom: 2px solid var(--couleur-accent__pale);
                 height: 2px;
-                transition: all 350ms;
-                width: 0;
-            }
-
-            &:hover {
-                & .ligne {
-                    width: 100% !important;
-                }
             }
         }
     }
