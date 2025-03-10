@@ -60,7 +60,7 @@ function HeroAccueil() {
                 Bloc infos
             </motion.div>
             <motion.div
-                className="hero h-1/2 bg-red-100"
+                className="hero h-1/2 bg-red-500"
                 initial="cache"
                 whileInView="visible"
                 exit="fin"

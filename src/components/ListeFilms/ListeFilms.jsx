@@ -1,23 +1,21 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import "./ListeFilms.css";
 import TuileFilm from "../TuileFilm/TuileFilm";
 import Toast from "../Toast/Toast";
-import Button from "../Button/Button";
-import { d } from "../../../utils/fonctions";
-import { motion } from "motion/react";
+import { motion, useAnimation } from "motion/react";
 import Spinner from "../Spinner/Spinner";
 
 function ListeFilms() {
-    let [estConnecte, setConnexion] = useState(false);
-    let [afficheLoader, setLoader] = useState(true);
+    const controls = useAnimation(); //Permet de gérer les animations manuellement
+
+    let [afficheSpinner, setSpinner] = useState(true);
     let [films, setFilms] = useState([]);
     let [erreur, setErreur] = useState(false);
 
     useEffect(() => {
         async function fetchData() {
             try {
-                setLoader(true);
+                setSpinner(true);
                 let URL = import.meta.env.VITE_DEV_URL;
 
                 if (import.meta.env.VITE_MODE == "PRODUCTION") {
@@ -28,50 +26,44 @@ function ListeFilms() {
 
                 const donneesFilms = await reponse.json();
 
-                setTimeout(() => {
-                    setFilms(donneesFilms);
-                    setLoader(false);
-                }, 3500);
+                setFilms(donneesFilms);
+                setSpinner(false); // On cache le loader
+
+                //Permet d'attendre le chargement avant de déclencher l'animation
+                controls.start("visible");
             } catch (erreur) {
                 setErreur(true);
-                setLoader(false);
+                setSpinner(false);
             }
         }
 
         fetchData();
     }, []);
 
+    //État du parent permettant de gérer l'affichage des tuiles avec un délai
+    const etats = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.2,
+                when: "beforeChildren",
+            },
+        },
+    };
     return (
         <main>
-            {afficheLoader && <Spinner />}
+            {afficheSpinner && <Spinner />}
 
             {erreur && <Toast message="Une erreur est survenue" />}
             <h1>Catalogue</h1>
             <p>Découvrez nos nouveaux titres</p>
-            {/* <Button callback={clic} texte="Cliquez-moi" />
-            <Button callback={clic2} texte="Abonnez-vous" /> */}
-            {/* {afficherConnexion()} */}
-            {/* {estConnecte && <div>est connecté</div>} */}
-            {/* {estConnecte ? <div>est connecté</div> : ""} */}
-            <div className="liste-films">
+
+            <motion.div className="liste-films" initial="hidden" animate={controls} variants={etats}>
                 {films.map((film) => {
-                    // return <TuileFilm key={film.id} film={film} />;
-                    return (
-                        <div className="liste-films__element" key={`film-${film.id}`} id={d(film.id)}>
-                            {/* <div className="tuile-infos">{he.decode(film.titre)}</div> */}
-                            <div className="tuile-infos">{d(film.titre)}</div>
-                            <img
-                                className="object-cover h-full"
-                                src={`/img/${d(film.titreVignette)}`}
-                                alt={d(film.titre)}
-                            />
-                        </div>
-                    );
+                    return <TuileFilm key={film.id} film={film} />;
                 })}
-                {films.length == 0 && "Aucun film trouvé"}
-            </div>
-            {estConnecte ? <div>Connecté</div> : <div>Non connecté</div>}
-            {estConnecte && <div>Connecté2</div>}
+            </motion.div>
         </main>
     );
 }

@@ -13,3 +13,7 @@
 
 /* Exceptions spécifiques à des pages*/
 @import "tailwindcss";
+
+@theme {
+    --color-red-500: #d7288c;
+}
