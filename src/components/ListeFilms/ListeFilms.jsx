@@ -5,15 +5,19 @@ import TuileFilm from "../TuileFilm/TuileFilm";
 import Toast from "../Toast/Toast";
 import Button from "../Button/Button";
 import { d } from "../../../utils/fonctions";
+import { motion } from "motion/react";
+import Spinner from "../Spinner/Spinner";
 
 function ListeFilms() {
     let [estConnecte, setConnexion] = useState(false);
+    let [afficheLoader, setLoader] = useState(true);
     let [films, setFilms] = useState([]);
     let [erreur, setErreur] = useState(false);
 
     useEffect(() => {
         async function fetchData() {
             try {
+                setLoader(true);
                 let URL = import.meta.env.VITE_DEV_URL;
 
                 if (import.meta.env.VITE_MODE == "PRODUCTION") {
@@ -23,22 +27,24 @@ function ListeFilms() {
                 const reponse = await fetch(`${URL}/films`);
 
                 const donneesFilms = await reponse.json();
-                setFilms(donneesFilms);
+
+                setTimeout(() => {
+                    setFilms(donneesFilms);
+                    setLoader(false);
+                }, 3500);
             } catch (erreur) {
                 setErreur(true);
+                setLoader(false);
             }
         }
-        const timeout = window.setTimeout(() => {
-            fetchData();
-        }, 100);
 
-        return () => {
-            clearTimeout(timeout);
-        };
+        fetchData();
     }, []);
 
     return (
         <main>
+            {afficheLoader && <Spinner />}
+
             {erreur && <Toast message="Une erreur est survenue" />}
             <h1>Catalogue</h1>
             <p>Découvrez nos nouveaux titres</p>
