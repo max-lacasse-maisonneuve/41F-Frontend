@@ -30,7 +30,7 @@ function TuileFilm(props) {
             className="liste-films__element"
             key={`film-${film.id}`}
             onClick={clickVignette}
-            id={d(film.id)}
+            id={film.id}
             variants={etats}
         >
             {/* <div className="tuile-infos">{he.decode(film.titre)}</div> */}
@@ -40,11 +40,4 @@ function TuileFilm(props) {
     );
 }
 
-TuileFilm.propTypes = {
-    film: PropTypes.shape({
-        id: PropTypes.string.isRequired,
-        titre: PropTypes.string.isRequired,
-        titreVignette: PropTypes.string.isRequired,
-    }),
-};
 export default TuileFilm;
