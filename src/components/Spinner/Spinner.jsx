@@ -1,4 +1,3 @@
-import React from "react";
 import "./Spinner.css";
 import { motion } from "motion/react";
 
@@ -7,7 +6,7 @@ function Spinner() {
         initial: { rotate: 0 },
         animate: { rotate: "360deg", transition: { repeat: Infinity, duration: 2, ease: "easeInOut" } },
     };
-    
+
     return (
         <div className="spinner">
             <motion.svg
