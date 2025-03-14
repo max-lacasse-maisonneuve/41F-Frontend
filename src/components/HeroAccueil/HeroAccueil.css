@@ -1,9 +1,10 @@
 .hero {
-    padding: var(--espace-xl);
-    border: 2px solid var(--couleur-principale__fonce);
     border-radius: 10px;
     font-size: var(--police-xl);
-    overflow: hidden;
     transform-origin: left center;
     transform: scaleX(0);
+    text-align: center;
+    & h1 {
+        font-size: 2rem;
+    }
 }
