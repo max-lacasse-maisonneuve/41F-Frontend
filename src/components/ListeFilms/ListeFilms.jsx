@@ -26,13 +26,23 @@ function ListeFilms() {
 
                 const donneesFilms = await reponse.json();
 
-                setFilms(donneesFilms);
-                setSpinner(false); // On cache le loader
+                if (reponse.ok) {
+                    console.log(donneesFilms);
+
+                    setFilms(donneesFilms);
+                    setSpinner(false); // On cache le loader
+                } else {
+                    setErreur(donneesFilms.msg);
+                    console.log(donneesFilms);
+                    setSpinner(false); // On cache le loader
+                }
 
                 //Permet d'attendre le chargement avant de déclencher l'animation
                 controls.start("visible");
             } catch (erreur) {
-                setErreur(true);
+                console.log(erreur);
+
+                // setErreur(true);
                 setSpinner(false);
             }
         }
@@ -54,7 +64,7 @@ function ListeFilms() {
         <main>
             {afficheSpinner && <Spinner />}
 
-            {erreur && <Toast message="Une erreur est survenue" />}
+            {erreur && <Toast message={erreur} />}
             <h1>Catalogue</h1>
             <p>Découvrez nos nouveaux titres</p>
 
