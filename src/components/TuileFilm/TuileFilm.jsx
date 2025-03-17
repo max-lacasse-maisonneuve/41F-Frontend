@@ -31,6 +31,8 @@ function TuileFilm(props) {
             key={`film-${film.id}`}
             onClick={clickVignette}
             id={film.id}
+            initial="hidden"
+            animate="visible"
             variants={etats}
         >
             {/* <div className="tuile-infos">{he.decode(film.titre)}</div> */}

@@ -47,7 +47,6 @@ function ListeFilms() {
             opacity: 1,
             transition: {
                 staggerChildren: 0.2,
-                when: "beforeChildren",
             },
         },
     };
