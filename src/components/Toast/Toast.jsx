@@ -1,7 +1,20 @@
+import { useState } from "react";
 import "./Toast.css";
 function Toast(props) {
+    const [estFermee, fermer] = useState(false);
     const { message } = props;
-    return <div className="toast">{message}</div>;
+    function fermerBoite() {
+        fermer(true);
+    }
+    return (
+        <>
+            {!estFermee && (
+                <div className="toast" onClick={fermerBoite}>
+                    {message}
+                </div>
+            )}
+        </>
+    );
 }
 
 export default Toast;
