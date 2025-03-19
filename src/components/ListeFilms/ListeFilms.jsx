@@ -76,6 +76,7 @@ function ListeFilms() {
 
         setFilms(clone);
     }
+    
     return (
         <main>
             {afficheSpinner && <Spinner />}
