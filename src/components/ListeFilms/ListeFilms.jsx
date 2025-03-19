@@ -12,14 +12,22 @@ function ListeFilms() {
     let [films, setFilms] = useState([]);
     let [erreur, setErreur] = useState(false);
 
-    function trierTitre() {
+    function trierTitre(evenement) {
+        const declencheur = evenement.currentTarget;
+        const direction = Number(declencheur.dataset.direction);
         const clone = [...films];
+        
         clone.sort((a, b) => {
-            return a.titre < b.titre;
+            if (direction == 1) {
+                return a.titre.localeCompare(b.titre);
+            } else {
+                return b.titre.localeCompare(a.titre);
+            }
         });
+        
         setFilms(clone);
     }
-    
+
     useEffect(() => {
         async function fetchData() {
             try {
@@ -77,6 +85,14 @@ function ListeFilms() {
             <p>Découvrez nos nouveaux titres</p>
 
             <motion.div className="liste-films" initial="hidden" animate={controls} variants={etats}>
+                <div className="filtre flex flex-col gap-1">
+                    <div className="bouton text-white" onClick={trierTitre} data-direction="1">
+                        Titre (ascendant)
+                    </div>
+                    <div className="bouton text-white" onClick={trierTitre} data-direction="-1">
+                        Titre (descendant)
+                    </div>
+                </div>
                 {films.map((film) => {
                     return <TuileFilm key={film.id} film={film} />;
                 })}
