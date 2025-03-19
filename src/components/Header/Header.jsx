@@ -38,7 +38,11 @@ function Header() {
             {/* AnimatePresence permet de gérer les animations de sortie des composants (exit) */}
             <AnimatePresence>
                 {headerVisible && (
-                    <motion.header initial={{ top: 0 }} exit={{ top: "-100%", transition: { duration: 1 } }}>
+                    <motion.header
+                        initial={{ top: 0 }}
+                        exit={{ top: "-100%", transition: { duration: 1 } }}
+                        className="z-10"
+                    >
                         <div>
                             <Link className="logo-container" to="/">
                                 <motion.img
