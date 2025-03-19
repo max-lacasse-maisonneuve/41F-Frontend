@@ -12,6 +12,14 @@ function ListeFilms() {
     let [films, setFilms] = useState([]);
     let [erreur, setErreur] = useState(false);
 
+    function trierTitre() {
+        const clone = [...films];
+        clone.sort((a, b) => {
+            return a.titre < b.titre;
+        });
+        setFilms(clone);
+    }
+    
     useEffect(() => {
         async function fetchData() {
             try {
