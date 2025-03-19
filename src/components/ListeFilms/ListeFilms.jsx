@@ -12,22 +12,6 @@ function ListeFilms() {
     let [films, setFilms] = useState([]);
     let [erreur, setErreur] = useState(false);
 
-    function trierTitre(evenement) {
-        const declencheur = evenement.currentTarget;
-        const direction = Number(declencheur.dataset.direction);
-        const clone = [...films];
-        
-        clone.sort((a, b) => {
-            if (direction == 1) {
-                return a.titre.localeCompare(b.titre);
-            } else {
-                return b.titre.localeCompare(a.titre);
-            }
-        });
-        
-        setFilms(clone);
-    }
-
     useEffect(() => {
         async function fetchData() {
             try {
@@ -76,6 +60,22 @@ function ListeFilms() {
             },
         },
     };
+
+    function trierTitre(evenement) {
+        const declencheur = evenement.currentTarget;
+        const direction = Number(declencheur.dataset.direction);
+        const clone = [...films];
+
+        clone.sort((a, b) => {
+            if (direction == 1) {
+                return a.titre.localeCompare(b.titre);
+            } else {
+                return b.titre.localeCompare(a.titre);
+            }
+        });
+
+        setFilms(clone);
+    }
     return (
         <main>
             {afficheSpinner && <Spinner />}
