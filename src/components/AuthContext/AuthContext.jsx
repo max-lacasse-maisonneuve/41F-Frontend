@@ -39,6 +39,15 @@ function AuthContextProvider(props) {
             return false;
         }
     }
+    function check(){
+        const jetonSauvegarde = localStorage.getItem("jeton");
+
+        if (jetonSauvegarde && validerJeton(jetonSauvegarde)) {
+            setJeton(jetonSauvegarde);
+        } else {
+            deconnexion();
+        }
+    }
 
     function connexion(nouveauJeton) {
         if (validerJeton(nouveauJeton)) {
