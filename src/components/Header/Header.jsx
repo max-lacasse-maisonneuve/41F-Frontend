@@ -55,7 +55,7 @@ function Header() {
                                         damping: 20,
                                         bounce: 0.5,
                                     }}
-                                    src="/logo.png"
+                                    src="./logo.png"
                                     alt="logo"
                                     className="logo"
                                 />

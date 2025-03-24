@@ -1,9 +1,11 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useContext } from "react";
 import "./FormAjout.css";
 import { isLength, isInt, isDate, trim, escape, isEmpty, isIn } from "validator";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../AuthContext/AuthContext";
 
 function FormAjoutFilm() {
+    const { jeton } = useContext(AuthContext);
     const formRef = useRef();
     const navigate = useNavigate();
 
@@ -122,17 +124,20 @@ function FormAjoutFilm() {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
+                    authorization: `Bearer ${jeton}`,
                 },
                 body: JSON.stringify(donneesFilm),
             };
 
             //On envoie
             const reponse = await fetch(`${URL}/films`, objDonnees);
-
+            const donneesReponse = await reponse.json();
             //On gère la réponse
             if (reponse.ok) {
                 navigate("/films");
             } else {
+                console.log(donneesReponse.msg);
+
                 setMessage("Veuillez corriger le formulaire");
                 setTimeout(() => {
                     setMessage("");

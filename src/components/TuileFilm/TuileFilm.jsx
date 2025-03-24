@@ -37,7 +37,7 @@ function TuileFilm(props) {
         >
             {/* <div className="tuile-infos">{he.decode(film.titre)}</div> */}
             <div className="tuile-infos">{d(film.titre)}</div>
-            <img className="object-cover h-full" src={`/img/${d(film.titreVignette)}`} alt={d(film.titre)} />
+            <img className="object-cover h-full" src={`./img/${d(film.titreVignette)}`} alt={d(film.titre)} />
         </motion.div>
     );
 }
