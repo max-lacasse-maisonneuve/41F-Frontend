@@ -1,13 +1,21 @@
 import "./HeroAccueil.css";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { motion, AnimatePresence, transform, easeInOut, delay } from "motion/react";
 import CassetteVideo from "../CassetteVideo/CassetteVideo";
 import { Link } from "react-router-dom";
+import { MessageContext } from "../MessageContext/MessageContextProvider";
+import { Helmet } from "react-helmet-async";
+
 function HeroAccueil() {
+    let { afficherMessage } = useContext(MessageContext);
+
     let [visite, setVisite] = useState(true);
 
     function onClic() {
+        console.log("ici");
+
         setVisite(!visite);
+        afficherMessage("ALLO", "ERROR");
     }
 
     const variantes = {
@@ -25,6 +33,11 @@ function HeroAccueil() {
     return (
         <AnimatePresence>
             <div>
+                <Helmet>
+                    <title>Filmflix-Accueil</title>
+                    <meta name="description" content="Accueil" />
+                    <meta name="keywords" content="Film, 80's, club video" />
+                </Helmet>
                 <motion.div
                     className="hero"
                     onClick={onClic}

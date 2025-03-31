@@ -4,6 +4,7 @@ import TuileFilm from "../TuileFilm/TuileFilm";
 import Toast from "../Toast/Toast";
 import { motion, useAnimation } from "motion/react";
 import Spinner from "../Spinner/Spinner";
+import { Helmet } from "react-helmet-async";
 
 function ListeFilms() {
     const controls = useAnimation(); //Permet de gérer les animations manuellement
@@ -76,9 +77,14 @@ function ListeFilms() {
 
         setFilms(clone);
     }
-    
+
     return (
         <main>
+            <Helmet>
+                <title>Filmflix-Liste de films</title>
+                <meta name="description" content="Liste de films..." />
+                <meta name="keywords" content="Liste de films..." />
+            </Helmet>
             {afficheSpinner && <Spinner />}
 
             {erreur && <Toast message={erreur} />}

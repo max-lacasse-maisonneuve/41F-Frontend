@@ -1,0 +1,25 @@
+.message {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    min-height: 100px;
+    background-color: white;
+    border: 2px solid rgb(95, 95, 181);
+    color: rgb(95, 95, 181);
+    z-index: 9999;
+    &[data-type="SUCCESS"] {
+        border: 2px solid rgb(131, 181, 95);
+        color: rgb(131, 181, 95);
+    }
+
+    &[data-type="WARNING"] {
+        border: 2px solid rgb(181, 158, 95);
+        color: rgb(181, 158, 95);
+    }
+
+    &[data-type="ERROR"] {
+        border: 2px solid rgb(181, 95, 95);
+        color: rgb(181, 95, 95);
+    }
+}
