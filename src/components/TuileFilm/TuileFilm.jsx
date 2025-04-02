@@ -7,7 +7,10 @@ import { d } from "../../../utils/fonctions";
 function TuileFilm(props) {
     const { film = { id: "", titre: "", titreVignette: "" } } = props;
     let navigate = useNavigate();
-
+    let URL = import.meta.env.VITE_DEV_URL;
+    if (import.meta.env.VITE_MODE == "PRODUCTION") {
+        URL = import.meta.env.VITE_PROD_URL;
+    }
     function clickVignette(event) {
         const declencheur = event.currentTarget;
         navigate(`/films/${declencheur.id}`);
@@ -25,6 +28,11 @@ function TuileFilm(props) {
             },
         },
     };
+
+    function erreurImage(evenement) {
+        const declencheur = evenement.currentTarget;
+        declencheur.src = "/img/default.jpg";
+    }
     return (
         <motion.div
             className="liste-films__element"
@@ -37,7 +45,12 @@ function TuileFilm(props) {
         >
             {/* <div className="tuile-infos">{he.decode(film.titre)}</div> */}
             <div className="tuile-infos">{d(film.titre)}</div>
-            <img className="object-cover h-full" src={`./img/${d(film.titreVignette)}`} alt={d(film.titre)} />
+            <img
+                className="object-cover h-full"
+                src={`${URL}/assets/img/${d(film.titreVignette)}`}
+                alt={d(film.titre)}
+                onError={erreurImage}
+            />
         </motion.div>
     );
 }

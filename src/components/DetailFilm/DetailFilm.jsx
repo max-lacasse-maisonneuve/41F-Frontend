@@ -47,11 +47,18 @@ function DetailFilm() {
             navigate("/films");
         }
     }
-
+    let URL = import.meta.env.VITE_DEV_URL;
+    if (import.meta.env.VITE_MODE == "PRODUCTION") {
+        URL = import.meta.env.VITE_PROD_URL;
+    }
     return (
         <main className="flex justify-center gap-16 ">
             <div className="w-1/4">
-                <img className="h-auto max-w-full" src={`/img/${d(film.titreVignette)}`} alt={d(film.titre)} />
+                <img
+                    className="h-auto max-w-full"
+                    src={`${URL}/assets/img/${d(film.titreVignette)}`}
+                    alt={d(film.titre)}
+                />
             </div>
             <div className="flex flex-col justify-end w-3/4">
                 <div className="pb-5">

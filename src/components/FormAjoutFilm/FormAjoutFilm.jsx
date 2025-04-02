@@ -21,6 +21,8 @@ function FormAjoutFilm() {
         titreVignette: "",
     });
 
+    const [fichierImage, setFichierImage] = useState(null);
+
     const [erreurs, setErreurs] = useState({
         titre: "",
         description: "",
@@ -35,6 +37,12 @@ function FormAjoutFilm() {
 
         setDonneesFilm(donnees);
     }, [genres]);
+
+    useEffect(() => {
+        const nomFichier = fichierImage ? fichierImage.name : "";
+        const donnees = { ...donneesFilm, titreVignette: nomFichier };
+        setDonneesFilm(donnees);
+    }, [fichierImage]);
 
     // Valide les champs à chaque changement
     useEffect(() => {
@@ -77,6 +85,11 @@ function FormAjoutFilm() {
         setGenres(nouveauGenres);
     }
 
+    function onChangeFile(evenement) {
+        const fichier = evenement.currentTarget.files[0];
+        setFichierImage(fichier);
+    }
+
     // Fonction qui valide et affiche les erreurs dans le formulaire
     function validerFormulaire() {
         const nouvellesErreurs = {};
@@ -107,6 +120,36 @@ function FormAjoutFilm() {
         setFormulaireValidity(formRef.current.checkValidity() && Object.keys(nouvellesErreurs).length == 0);
     }
 
+    async function enregistrerImage() {
+        return new Promise((resolve, reject) => {
+            const formData = new FormData();
+            formData.append("image", fichierImage);
+
+            let URL = import.meta.env.VITE_DEV_URL;
+            if (import.meta.env.VITE_MODE == "PRODUCTION") {
+                URL = import.meta.env.VITE_PROD_URL;
+            }
+
+            const objDonnees = {
+                method: "POST",
+                headers: {
+                    authorization: `Bearer ${jeton}`,
+                },
+                body: formData,
+            };
+
+            fetch(`${URL}/films/image`, objDonnees).then((reponse) => {
+                if (reponse.ok) {
+                    resolve(true);
+                } else {
+                    reject(new Error("Erreur lors de l'envoi de l'image"));
+                }
+            }).catch((erreur) => {
+                reject(erreur)
+            });
+        });
+    }
+
     // Fonction qui gère la soumission du formulaire
     async function onSubmit(evenement) {
         evenement.preventDefault();
@@ -134,6 +177,8 @@ function FormAjoutFilm() {
             const donneesReponse = await reponse.json();
             //On gère la réponse
             if (reponse.ok) {
+                //Enregistrer l'image
+                await enregistrerImage();
                 navigate("/films");
             } else {
                 console.log(donneesReponse.msg);
@@ -149,7 +194,7 @@ function FormAjoutFilm() {
     return (
         <div>
             {message ? <p>{message}</p> : ""}
-            <form action="" onSubmit={onSubmit} ref={formRef}>
+            <form action="" onSubmit={onSubmit} ref={formRef} encType="multipart/formdata">
                 <div className="input-group">
                     <label htmlFor="titre">Titre</label>
                     <input type="text" name="titre" id="titre" onChange={onInputChange} value={donneesFilm.titre} />
@@ -192,14 +237,8 @@ function FormAjoutFilm() {
                 </div>
 
                 <div className="input-group">
-                    <label htmlFor="titreVignette">Nom de l'image</label>
-                    <input
-                        type="text"
-                        name="titreVignette"
-                        id="titreVignette"
-                        onChange={onInputChange}
-                        value={donneesFilm.titreVignette}
-                    />
+                    <label htmlFor="imageFilm">Image</label>
+                    <input type="file" name="imageFilm" id="imageFilm" accept="image/*" onChange={onChangeFile} />
                 </div>
 
                 <div className="input-checkbox-group">
