@@ -25,6 +25,11 @@ function TuileFilm(props) {
             },
         },
     };
+
+    let URL = import.meta.env.VITE_DEV_URL;
+    if (import.meta.env.VITE_MODE == "PRODUCTION") {
+        URL = import.meta.env.VITE_PROD_URL;
+    }
     return (
         <motion.div
             className="liste-films__element"
@@ -37,7 +42,11 @@ function TuileFilm(props) {
         >
             {/* <div className="tuile-infos">{he.decode(film.titre)}</div> */}
             <div className="tuile-infos">{d(film.titre)}</div>
-            <img className="object-cover h-full" src={`./img/${d(film.titreVignette)}`} alt={d(film.titre)} />
+            <img
+                className="object-cover h-full"
+                src={`${URL}/assets/img/${d(film.titreVignette)}`}
+                alt={d(film.titre)}
+            />
         </motion.div>
     );
 }

@@ -20,6 +20,7 @@ function FormAjoutFilm() {
         realisation: "",
         titreVignette: "",
     });
+    const [file, setFile] = useState(null);
 
     const [erreurs, setErreurs] = useState({
         titre: "",
@@ -35,6 +36,13 @@ function FormAjoutFilm() {
 
         setDonneesFilm(donnees);
     }, [genres]);
+
+    useEffect(() => {
+        const nomFichier = file ? file.name : "";
+        const donnees = { ...donneesFilm, titreVignette: nomFichier };
+
+        setDonneesFilm(donnees);
+    }, [file]);
 
     // Valide les champs à chaque changement
     useEffect(() => {
@@ -55,6 +63,44 @@ function FormAjoutFilm() {
         setDonneesFilm(nouvellesValeur);
     }
 
+    function handleFileChange(evenement) {
+        setFile(evenement.currentTarget.files[0]);
+    }
+
+    async function enregistrerImage() {
+        return new Promise((resolve, reject) => {
+            const formData = new FormData();
+            formData.append("image", file);
+
+            // On gère la base de la route du fetch
+            let URL = import.meta.env.VITE_DEV_URL;
+            if (import.meta.env.VITE_MODE == "PRODUCTION") {
+                URL = import.meta.env.VITE_PROD_URL;
+            }
+
+            //On prépare la donnée
+            const objDonnees = {
+                method: "POST",
+                headers: {
+                    authorization: `Bearer ${jeton}`,
+                },
+                body: formData,
+            };
+
+            //On envoie
+            fetch(`${URL}/films/image`, objDonnees)
+                .then((reponse) => {
+                    if (reponse.ok) {
+                        resolve(true);
+                    } else {
+                        reject(new Error("Erreur lors de l'envoi de l'image"));
+                    }
+                })
+                .catch((error) => {
+                    reject(error);
+                });
+        });
+    }
     // Fonction qui gère les changements dans les genres avec les boites à cocher
     function onGenreChange(evenement) {
         const checkBox = evenement.currentTarget;
@@ -132,8 +178,10 @@ function FormAjoutFilm() {
             //On envoie
             const reponse = await fetch(`${URL}/films`, objDonnees);
             const donneesReponse = await reponse.json();
+
             //On gère la réponse
             if (reponse.ok) {
+                await enregistrerImage();
                 navigate("/films");
             } else {
                 console.log(donneesReponse.msg);
@@ -149,7 +197,7 @@ function FormAjoutFilm() {
     return (
         <div>
             {message ? <p>{message}</p> : ""}
-            <form action="" onSubmit={onSubmit} ref={formRef}>
+            <form action="" onSubmit={onSubmit} ref={formRef} encType="multipart/form-data">
                 <div className="input-group">
                     <label htmlFor="titre">Titre</label>
                     <input type="text" name="titre" id="titre" onChange={onInputChange} value={donneesFilm.titre} />
@@ -194,12 +242,12 @@ function FormAjoutFilm() {
                 <div className="input-group">
                     <label htmlFor="titreVignette">Nom de l'image</label>
                     <input
-                        type="text"
+                        type="file"
                         name="titreVignette"
                         id="titreVignette"
-                        onChange={onInputChange}
-                        value={donneesFilm.titreVignette}
-                    />
+                        accept="image/*"
+                        onChange={handleFileChange}
+                    ></input>
                 </div>
 
                 <div className="input-checkbox-group">

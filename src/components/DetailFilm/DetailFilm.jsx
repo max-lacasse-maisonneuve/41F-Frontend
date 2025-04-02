@@ -5,6 +5,10 @@ import { d } from "../../../utils/fonctions";
 function DetailFilm() {
     const { id } = useParams();
     const navigate = useNavigate();
+    let URL = import.meta.env.VITE_DEV_URL;
+    if (import.meta.env.VITE_MODE == "PRODUCTION") {
+        URL = import.meta.env.VITE_PROD_URL;
+    }
 
     // Use state pour stocker les infos du film
     let [film, setFilm] = useState({
@@ -16,12 +20,6 @@ function DetailFilm() {
     // Use effect pour déclencher une fonction lors du chargement du composant DetailFilm
     useEffect(() => {
         async function getData() {
-            let URL = import.meta.env.VITE_DEV_URL;
-
-            if (import.meta.env.VITE_MODE == "PRODUCTION") {
-                URL = import.meta.env.VITE_PROD_URL;
-            }
-
             const reponse = await fetch(`${URL}/films/${id}`);
 
             const donneesFilms = await reponse.json();
@@ -51,7 +49,12 @@ function DetailFilm() {
     return (
         <main className="flex justify-center gap-16 ">
             <div className="w-1/4">
-                <img className="h-auto max-w-full" src={`/img/${d(film.titreVignette)}`} alt={d(film.titre)} />
+                {film.titreVignette && (<img
+                    className="h-auto max-w-full"
+                    loading="lazy"
+                    src={`${URL}/assets/img/${d(film.titreVignette)}`}
+                    alt={d(film.titre)}
+                />)}
             </div>
             <div className="flex flex-col justify-end w-3/4">
                 <div className="pb-5">
