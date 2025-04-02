@@ -13,6 +13,10 @@ function TuileFilm(props) {
         navigate(`/films/${declencheur.id}`);
     }
 
+    function imageDefault(event) {
+        const declencheur = event.currentTarget;
+        declencheur.src = "/img/default.jpg";
+    }
     // État de l'enfant permettant de gérer l'affichage des tuiles avec un délai
     // Les états doivent être les mêmes que ceux du parent pour que l'animation fonctionne correctement
     // On passe uniquement les propriétés qui nous intéressent
@@ -43,9 +47,10 @@ function TuileFilm(props) {
             {/* <div className="tuile-infos">{he.decode(film.titre)}</div> */}
             <div className="tuile-infos">{d(film.titre)}</div>
             <img
-                className="object-cover h-full"
+                className=""
                 src={`${URL}/assets/img/${d(film.titreVignette)}`}
                 alt={d(film.titre)}
+                onError={imageDefault}
             />
         </motion.div>
     );
