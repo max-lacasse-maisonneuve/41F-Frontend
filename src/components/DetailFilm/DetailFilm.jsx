@@ -45,7 +45,10 @@ function DetailFilm() {
             navigate("/films");
         }
     }
-
+    let URL = import.meta.env.VITE_DEV_URL;
+    if (import.meta.env.VITE_MODE == "PRODUCTION") {
+        URL = import.meta.env.VITE_PROD_URL;
+    }
     return (
         <main className="flex justify-center gap-16 ">
             <div className="w-1/4">
